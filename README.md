@@ -2,6 +2,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+### ⚠️ Current Status: Work in Progress ⚠️
+
+I'm in the early stages of development and should be considered **unstable**. The basic functions described below may be operational, but features might change, break, or be incomplete.
+
+
 # Python Image Processor
 
 A command-line tool built with Python to bulk resize and convert images. This script is designed to automate the repetitive task of preparing images for web use or archiving.
