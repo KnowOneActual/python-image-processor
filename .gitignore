@@ -77,9 +77,95 @@ GitHub.sublime-settings
 .env.*.local
 
 # Python
+# Virtual environments
 venv/
+env/
+.venv/
+.env/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# Python bytecode
 __pycache__/
+*.py[cod]
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+# Python build and distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Testing
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# PyCharm
+.idea/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Image processing specific
+# Sample images and test data
+samples/
+test_images/
+output/
+processed/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.tif
+*.webp
+*.svg
+# But keep small test fixtures if you have them in a specific directory
+!tests/fixtures/*.jpg
+!tests/fixtures/*.png
+!tests/fixtures/*.jpeg
+
+# Machine learning / AI models
+*.h5
+*.hdf5
+*.pb
+*.ckpt
+*.pth
+*.pt
+*.model
+models/
+checkpoints/
+weights/
+
+# Data files
+*.csv
+*.json
+*.xml
+*.yaml
+*.yml
+# Except for config files you want to track
+!config.yaml
+!config.yml
+!requirements.txt
+!pyproject.toml
 
 # Project-specific ignores
 # ========================
