@@ -9,11 +9,11 @@ I'm in the early stages of development and should be considered **unstable**. Th
 
 # Python Image Processor
 
-A command-line tool built with Python to bulk resize, convert, and watermark images. This script is designed to automate the repetitive task of preparing images for web use or archiving.
+A command-line tool built with Python to bulk resize, convert, watermark, and crop images. This script is designed to automate the repetitive task of preparing images for web use or archiving.
 
 ## What is this?
 
-This project is a simple yet powerful Python script that allows you to process an entire folder of images at once. You can resize images to a specific width, convert them to different file formats (like JPEG, PNG, or WEBP), and **add a text watermark**.
+This project is a simple yet powerful Python script that allows you to process an entire folder of images at once. You can resize images to a specific width, convert them to different file formats, add a text watermark, and **crop them to a specific aspect ratio**.
 
 ## Why was this created?
 
@@ -41,31 +41,25 @@ Manually processing images one by one is time-consuming and inefficient. This to
 
 ### Usage
 
-The script is run from the command line and takes an input directory and an output directory as required arguments. You can also provide optional flags to specify a new width, format, or watermark text.
+The script is run from the command line and takes an input directory and an output directory as required arguments.
 
 **Basic Structure:**
 ```bash
-python image_processor.py <input_directory> <output_directory> [--width <number>] [--format <type>] [--watermark "<text>"]
+python image_processor.py <input_directory> <output_directory> [--width <number>] [--format <type>] [--watermark "<text>"] [--crop "<w:h>"]
 ````
 
 **Examples:**
 
-  * **To resize all images to a width of 800 pixels:**
+  * **To crop all images to a square (1:1 aspect ratio):**
 
     ```bash
-    python image_processor.py ./input_images ./output_images --width 800
+    python image_processor.py ./input_images ./output_images --crop "1:1"
     ```
 
-  * **To convert all images to the WEBP format:**
+  * **To crop images to 16:9 and then resize them to 1280px wide:**
 
     ```bash
-    python image_processor.py ./input_images ./output_images --format webp
-    ```
-
-  * **To add a text watermark to all images:**
-
-    ```bash
-    python image_processor.py ./input_images ./output_images --watermark "© Your Name"
+    python image_processor.py ./input_images ./output_images --crop "16:9" --width 1280
     ```
 
   * **To combine resizing, converting, and watermarking:**
@@ -80,6 +74,6 @@ This is an active project with plans for future enhancements. Here are some feat
 
   * **Graphical User Interface (GUI):** Develop a simple GUI using a library like Tkinter or PyQt to make the tool accessible to non-technical users.
   * **Add More Features:**
-      * Implement image cropping functionality.
       * Introduce image compression options to target a specific file size.
-  * **Enhanced Error Handling:** Improve validation to provide more specific feedback (e.g., checking if the input directory contains valid image files).
+      * Add advanced filename options (e.g., adding a suffix).
+  * **Enhanced Error Handling:** Continue to improve validation and user feedback.

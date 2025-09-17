@@ -1,10 +1,3 @@
-You got it. Staying on top of the changelog is key. It's the best way to keep a clear history of the project's progress.
-
-Here is the updated content for your `CHANGELOG.md` file. I've added a new version, `0.3.0`, for the watermarking feature.
-
-### **Updated `CHANGELOG.md`**
-
-
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -16,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Your next feature here...
+
+## [0.4.0] - 2025-09-17
+
+### Added
+- New feature to crop images to a specific aspect ratio from the center.
+- Added a `--crop` command-line argument that accepts a ratio (e.g., "16:9").
 
 ## [0.3.0] - 2025-09-16
 
