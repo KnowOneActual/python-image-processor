@@ -9,15 +9,15 @@ I'm in the early stages of development and should be considered **unstable**. Th
 
 # Python Image Processor
 
-A command-line tool built with Python to bulk resize and convert images. This script is designed to automate the repetitive task of preparing images for web use or archiving.
+A command-line tool built with Python to bulk resize, convert, and watermark images. This script is designed to automate the repetitive task of preparing images for web use or archiving.
 
 ## What is this?
 
-This project is a simple yet powerful Python script that allows you to process an entire folder of images at once. You can resize images to a specific width while maintaining aspect ratio, and/or convert them to different file formats like JPEG, PNG, or WEBP.
+This project is a simple yet powerful Python script that allows you to process an entire folder of images at once. You can resize images to a specific width, convert them to different file formats (like JPEG, PNG, or WEBP), and **add a text watermark**.
 
 ## Why was this created?
 
-Manually resizing and converting images one by one is time-consuming and inefficient. This tool was created to solve that problem by providing a fast, automated way to handle these tasks. It serves as a practical utility for web developers, content creators, or anyone who frequently works with large batches of images. It's also a project to demonstrate skills in Python, command-line interface (CLI) development, and image manipulation using the Pillow library.
+Manually processing images one by one is time-consuming and inefficient. This tool was created to solve that problem by providing a fast, automated way to handle these tasks. It serves as a practical utility for web developers, content creators, or anyone who frequently works with large batches of images. It's also a project to demonstrate skills in Python, command-line interface (CLI) development, and image manipulation using the Pillow library.
 
 ## How to Use
 
@@ -41,11 +41,11 @@ Manually resizing and converting images one by one is time-consuming and ineffic
 
 ### Usage
 
-The script is run from the command line and takes an input directory and an output directory as required arguments. You can also provide optional flags to specify a new width or format.
+The script is run from the command line and takes an input directory and an output directory as required arguments. You can also provide optional flags to specify a new width, format, or watermark text.
 
 **Basic Structure:**
 ```bash
-python image_processor.py <input_directory> <output_directory> [--width <number>] [--format <type>]
+python image_processor.py <input_directory> <output_directory> [--width <number>] [--format <type>] [--watermark "<text>"]
 ````
 
 **Examples:**
@@ -62,10 +62,16 @@ python image_processor.py <input_directory> <output_directory> [--width <number>
     python image_processor.py ./input_images ./output_images --format webp
     ```
 
-  * **To resize all images to 300px wide AND convert them to JPEG:**
+  * **To add a text watermark to all images:**
 
     ```bash
-    python image_processor.py ./input_images ./output_images --width 300 --format jpeg
+    python image_processor.py ./input_images ./output_images --watermark "© Your Name"
+    ```
+
+  * **To combine resizing, converting, and watermarking:**
+
+    ```bash
+    python image_processor.py ./input_images ./output_images --width 300 --format jpeg --watermark "DRAFT"
     ```
 
 ## Roadmap
@@ -75,6 +81,5 @@ This is an active project with plans for future enhancements. Here are some feat
   * **Graphical User Interface (GUI):** Develop a simple GUI using a library like Tkinter or PyQt to make the tool accessible to non-technical users.
   * **Add More Features:**
       * Implement image cropping functionality.
-      * Add an option to add watermarks to images.
       * Introduce image compression options to target a specific file size.
   * **Enhanced Error Handling:** Improve validation to provide more specific feedback (e.g., checking if the input directory contains valid image files).

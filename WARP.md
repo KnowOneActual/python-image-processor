@@ -4,11 +4,14 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 ## Project Overview
 
-This is a Python-based image processing project in its early stages. The repository currently contains:
-- Basic project scaffolding with empty source files
-- Standard documentation templates (README, CONTRIBUTING, CHANGELOG)
-- Git workflow automation via `start-work.sh`
-- Issue templates for bug reports and feature requests
+This is a Python-based image processing tool that provides bulk image processing capabilities including resizing, format conversion, and watermarking. The project uses PIL/Pillow for image manipulation.
+
+### Key Features
+- **Bulk image processing**: Process entire directories of images
+- **Resizing**: Resize images while maintaining aspect ratio
+- **Format conversion**: Convert between common image formats (PNG, JPEG, WebP, etc.)
+- **Watermarking**: Add text watermarks with customizable opacity and positioning
+- **Error handling**: Robust handling of corrupt or invalid image files
 
 ## Development Workflow
 
@@ -30,7 +33,10 @@ This script:
 
 ## Project Structure
 
-- `src/` - Source code directory (currently contains empty `main` file)
+- `image_processor.py` - Main image processing module with watermarking and batch processing
+- `requirements.txt` - Python dependencies (Pillow)
+- `.venv/` - Python virtual environment (git-ignored)
+- `src/` - Source code directory (legacy, contains empty `main` file)
 - `tests/` - Test directory (currently empty)
 - `docs/` - Documentation directory (contains empty `index.md`)
 - `.github/ISSUE_TEMPLATE/` - GitHub issue templates for bugs and features
@@ -50,22 +56,81 @@ The project uses `.editorconfig` with the following standards:
 - Pull latest changes from `origin/main` before branching
 - Use descriptive branch names following the pattern shown in `start-work.sh`
 
+## Development Commands
+
+### Environment Setup
+```bash
+# Create and activate virtual environment
+python3 -m venv .venv
+source .venv/bin/activate  # On macOS/Linux
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Running the Image Processor
+```bash
+# Basic usage
+python image_processor.py input_folder output_folder
+
+# Resize images to 800px width
+python image_processor.py input_folder output_folder --width 800
+
+# Convert all images to JPEG
+python image_processor.py input_folder output_folder --format jpeg
+
+# Add watermark
+python image_processor.py input_folder output_folder --watermark "© 2024 My Company"
+
+# Combine operations
+python image_processor.py input_folder output_folder --width 800 --format jpeg --watermark "© 2024"
+```
+
+### Development Tasks
+```bash
+# Deactivate virtual environment
+deactivate
+
+# Add new dependencies
+pip install package_name
+pip freeze > requirements.txt
+```
+
+## Architecture Overview
+
+### Core Functions
+- **`add_watermark()`**: Applies transparent text watermarks to images with customizable font size and opacity
+- **`process_images()`**: Main batch processing function that handles resizing, format conversion, and watermarking
+- **Error handling**: Graceful handling of corrupt images and invalid file types
+
+### Image Processing Pipeline
+1. **Input validation**: Checks directory existence and file types
+2. **Image loading**: Uses PIL to open and validate images
+3. **Processing**: Applies transformations (resize → watermark → format conversion)
+4. **Output**: Saves processed images to specified directory
+
+### Supported Formats
+- **Input**: PNG, JPEG, GIF, BMP, WebP
+- **Output**: All Pillow-supported formats with automatic RGBA→RGB conversion for JPEG
+
 ## Development Notes
 
 ### Current State
-This project is in its initial setup phase:
-- No Python dependencies or requirements files yet defined
-- No build system, testing framework, or CI/CD configured
-- Source code structure not yet established
-- No package configuration (setup.py, pyproject.toml) present
+- ✅ Core image processing functionality implemented
+- ✅ Virtual environment and dependency management setup
+- ✅ Command-line interface with argparse
+- ✅ Error handling and file validation
+- 🔄 No testing framework configured yet
+- 🔄 No CI/CD pipeline setup
+- 🔄 Code formatting/linting tools not configured
 
-### Future Setup Considerations
-When developing Python code for this project, typical patterns will likely include:
-- Setting up virtual environments for dependency management
-- Adding requirements.txt or pyproject.toml for dependencies
-- Implementing a proper Python package structure in `src/`
-- Adding testing framework setup (pytest, unittest, etc.)
-- Configuring linting and formatting tools (black, flake8, mypy)
+### Future Enhancements
+- Add comprehensive test suite (pytest)
+- Implement logging instead of print statements
+- Add progress bars for batch processing
+- Support for additional image effects (blur, brightness, contrast)
+- Configuration file support
+- GUI interface option
 
 ### Git Configuration
 The `.gitignore` includes comprehensive exclusions for:
