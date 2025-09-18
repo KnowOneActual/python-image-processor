@@ -40,7 +40,7 @@ This script:
 
 - `image_processor.py` - Main image processing module with cropping, resizing, watermarking, and batch processing
 - `app.py` - Desktop GUI application built with Tkinter
-- `requirements.txt` - Python dependencies (Pillow)
+- `requirements.txt` - Python dependencies (Pillow, sv_ttk)
 - `input_images/` - Sample input directory for testing
 - `output_images/` - Default output directory for processed images
 - `.venv/` - Python virtual environment (git-ignored)
@@ -75,10 +75,10 @@ The project uses `.editorconfig` with the following standards:
 python3 -m venv .venv
 source .venv/bin/activate  # On macOS/Linux
 
-# Install dependencies (Note: sv_ttk required for GUI)
-pip install pillow sv_ttk
-# Or install from requirements.txt (may need to add sv_ttk manually)
+# Install dependencies
 pip install -r requirements.txt
+# Or install individually:
+pip install pillow sv_ttk
 ```
 
 ### Running the Applications
