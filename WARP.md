@@ -11,6 +11,7 @@ This is a Python-based image processing tool that provides bulk image processing
 - **Cropping**: Crop images to specific aspect ratios (16:9, 1:1, etc.) from center
 - **Resizing**: Resize images while maintaining aspect ratio
 - **Format conversion**: Convert between common image formats (PNG, JPEG, WebP, etc.)
+- **Compression quality control**: Adjustable quality settings for JPEG and WebP formats (1-100)
 - **Watermarking**: Add text watermarks with customizable opacity and positioning
 - **Error handling**: Robust handling of corrupt or invalid image files
 
@@ -85,14 +86,23 @@ python image_processor.py input_images output_images --crop "16:9" --width 1280
 # Resize images to 800px width
 python image_processor.py input_folder output_folder --width 800
 
-# Convert all images to JPEG
-python image_processor.py input_folder output_folder --format jpeg
+# Convert all images to JPEG with custom quality
+python image_processor.py input_folder output_folder --format jpeg --quality 85
+
+# Web optimization (WebP format with balanced quality)
+python image_processor.py input_folder output_folder --format webp --quality 75
 
 # Add watermark
 python image_processor.py input_folder output_folder --watermark "© 2024 My Company"
 
-# Combine all operations (crop, resize, convert, watermark)
-python image_processor.py input_images output_images --crop "16:9" --width 800 --format jpeg --watermark "© 2024"
+# Combine all operations (crop, resize, convert, compress, watermark)
+python image_processor.py input_images output_images --crop "16:9" --width 800 --format jpeg --quality 85 --watermark "© 2024"
+
+# Social media ready (Instagram square posts)
+python image_processor.py input_images output_images --crop "1:1" --width 1080 --format jpeg --quality 90
+
+# Small thumbnails with high compression
+python image_processor.py input_images output_images --width 150 --format jpeg --quality 65
 ```
 
 ### Development Tasks
@@ -110,14 +120,14 @@ pip freeze > requirements.txt
 ### Core Functions
 - **`crop_image()`**: Crops images to specific aspect ratios (e.g., 16:9, 1:1) from the center
 - **`add_watermark()`**: Applies transparent text watermarks to images with customizable font size and opacity
-- **`process_images()`**: Main batch processing function that handles cropping, resizing, format conversion, and watermarking
+- **`process_images()`**: Main batch processing function that handles cropping, resizing, format conversion, compression, and watermarking
 - **Error handling**: Graceful handling of corrupt images and invalid file types
 
 ### Image Processing Pipeline
 1. **Input validation**: Checks directory existence and file types
 2. **Image loading**: Uses PIL to open and validate images
-3. **Processing**: Applies transformations in order (crop → resize → watermark → format conversion)
-4. **Output**: Saves processed images to specified directory
+3. **Processing**: Applies transformations in order (crop → resize → watermark → format conversion with compression)
+4. **Output**: Saves processed images to specified directory with optimized quality settings
 
 ### Supported Formats
 - **Input**: PNG, JPEG, GIF, BMP, WebP
@@ -127,6 +137,8 @@ pip freeze > requirements.txt
 
 ### Current State
 - ✅ Core image processing functionality implemented (cropping, resizing, watermarking, format conversion)
+- ✅ Compression quality control for JPEG and WebP formats (v0.5.0)
+- ✅ Enhanced help documentation with usage examples and recommended settings
 - ✅ Virtual environment and dependency management setup
 - ✅ Command-line interface with argparse
 - ✅ Error handling and file validation
@@ -143,6 +155,8 @@ pip freeze > requirements.txt
 - Support for additional image effects (blur, brightness, contrast)
 - Configuration file support
 - GUI interface option
+- Batch optimization targeting specific file sizes
+- Advanced filename options (prefixes/suffixes, custom naming patterns)
 
 ### Git Configuration
 The `.gitignore` includes comprehensive exclusions for:
