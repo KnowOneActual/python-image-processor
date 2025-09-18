@@ -3,14 +3,14 @@ from PIL import Image, ImageDraw, ImageFont, UnidentifiedImageError
 import argparse
 import sys
 
-def crop_image(image, aspect_ratio_str):
+def crop_image(image, aspect_ratio_str, logger=print):
     """
     Crops an image to a specific aspect ratio from the center.
     """
     try:
         ratio_w, ratio_h = map(int, aspect_ratio_str.split(':'))
     except ValueError:
-        print(f"Invalid aspect ratio format: '{aspect_ratio_str}'. Use format like '16:9'.")
+        logger(f"Invalid aspect ratio format: '{aspect_ratio_str}'. Use format like '16:9'.")
         return image
 
     img_w, img_h = image.size
@@ -31,7 +31,7 @@ def crop_image(image, aspect_ratio_str):
     return image.crop((left, top, right, bottom))
 
 
-def add_watermark(image, text, font_size=36, opacity=128):
+def add_watermark(image, text, font_size=36, opacity=128, logger=print):
     """
     Adds a text watermark to an image.
     """
@@ -41,7 +41,7 @@ def add_watermark(image, text, font_size=36, opacity=128):
     try:
         font = ImageFont.truetype("arial.ttf", font_size)
     except IOError:
-        print("Arial font not found. Using default font.")
+        logger("Arial font not found. Using default font.")
         font = ImageFont.load_default()
 
     draw = ImageDraw.Draw(txt_layer)
@@ -55,23 +55,25 @@ def add_watermark(image, text, font_size=36, opacity=128):
     return Image.alpha_composite(watermark_image, txt_layer)
 
 
-def process_images(input_dir, output_dir, new_width=None, new_format=None, watermark_text=None, crop_ratio=None, quality=95):
+def process_images(input_dir, output_dir, new_width=None, new_format=None, watermark_text=None, crop_ratio=None, quality=95, logger=print):
     """
     Resizes, converts, watermarks, crops, and compresses all images in a directory.
     """
     if not os.path.isdir(input_dir):
-        print(f"Error: Input directory '{input_dir}' not found.")
-        sys.exit(1)
+        logger(f"Error: Input directory '{input_dir}' not found.")
+        # When called from GUI, we don't want to exit the whole app
+        # sys.exit(1)
+        return
 
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-        print(f"Created directory: {output_dir}")
+        logger(f"Created directory: {output_dir}")
 
     for filename in os.listdir(input_dir):
         input_path = os.path.join(input_dir, filename)
         valid_extensions = ('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp')
         if not os.path.isfile(input_path) or not filename.lower().endswith(valid_extensions):
-            print(f"Skipped: '{filename}' is not a recognized image file.")
+            logger(f"Skipped: '{filename}' is not a recognized image file.")
             continue
 
         try:
@@ -79,19 +81,19 @@ def process_images(input_dir, output_dir, new_width=None, new_format=None, water
                 processed_img = img.copy()
 
                 if crop_ratio:
-                    processed_img = crop_image(processed_img, crop_ratio)
-                    print(f"Cropped '{filename}' to {crop_ratio} aspect ratio")
+                    processed_img = crop_image(processed_img, crop_ratio, logger=logger)
+                    logger(f"Cropped '{filename}' to {crop_ratio} aspect ratio")
 
                 if new_width:
                     width, height = processed_img.size
                     aspect_ratio = height / width
                     new_height = int(new_width * aspect_ratio)
                     processed_img = processed_img.resize((new_width, new_height), Image.Resampling.LANCZOS)
-                    print(f"Resized '{filename}' to {new_width}px wide")
+                    logger(f"Resized '{filename}' to {new_width}px wide")
 
                 if watermark_text:
-                    processed_img = add_watermark(processed_img, watermark_text)
-                    print(f"Added watermark to '{filename}'")
+                    processed_img = add_watermark(processed_img, watermark_text, logger=logger)
+                    logger(f"Added watermark to '{filename}'")
 
                 output_filename = filename
                 current_format = new_format if new_format else os.path.splitext(filename)[1][1:].lower()
@@ -105,22 +107,21 @@ def process_images(input_dir, output_dir, new_width=None, new_format=None, water
                 save_options = {}
                 if current_format in ['jpeg', 'jpg', 'webp']:
                     save_options['quality'] = quality
-                    print(f"Set quality for '{filename}' to {quality}")
+                    logger(f"Set quality for '{filename}' to {quality}")
 
                 if current_format in ['jpeg', 'jpg']:
                     if processed_img.mode in ("RGBA", "P"):
                         processed_img = processed_img.convert("RGB")
 
                 processed_img.save(output_path, **save_options)
-                print(f"Saved processed image to '{output_path}'")
+                logger(f"Saved processed image to '{output_path}'")
 
         except UnidentifiedImageError:
-            print(f"Could not process '{filename}'. It may be corrupt or not a valid image file.")
+            logger(f"Could not process '{filename}'. It may be corrupt or not a valid image file.")
         except Exception as e:
-            print(f"An unexpected error occurred with '{filename}': {e}")
+            logger(f"An unexpected error occurred with '{filename}': {e}")
 
 if __name__ == "__main__":
-    # --- Help text with usage examples (epilog) ---
     help_examples = """
     Recommended Settings & Examples:
     --------------------------------
@@ -138,11 +139,10 @@ if __name__ == "__main__":
        python image_processor.py <in_dir> <out_dir> --watermark "© 2025 Your Name"
     """
 
-    # --- Argument Parser Setup ---
     parser = argparse.ArgumentParser(
         description="Bulk resize, convert, watermark, crop, and compress images.",
         epilog=help_examples,
-        formatter_class=argparse.RawDescriptionHelpFormatter # Allows for multi-line epilog
+        formatter_class=argparse.RawDescriptionHelpFormatter
     )
 
     parser.add_argument("input_dir", type=str, help="Directory with images to process.")
@@ -154,4 +154,5 @@ if __name__ == "__main__":
     parser.add_argument("--quality", type=int, default=95, help="Compression quality for JPEG/WEBP (1-100, default: 95).")
 
     args = parser.parse_args()
+    # When run as a script, it uses the default logger which is 'print'
     process_images(args.input_dir, args.output_dir, args.width, args.format, args.watermark, args.crop, args.quality)

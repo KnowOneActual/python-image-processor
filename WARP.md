@@ -4,9 +4,11 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 ## Project Overview
 
-This is a Python-based image processing tool that provides bulk image processing capabilities including resizing, format conversion, and watermarking. The project uses PIL/Pillow for image manipulation.
+This is a Python-based image processing tool that provides bulk image processing capabilities including resizing, format conversion, and watermarking. The project offers both a command-line interface (CLI) and a desktop GUI application built with Tkinter. The project uses PIL/Pillow for image manipulation.
 
 ### Key Features
+- **Desktop GUI Application**: User-friendly Tkinter interface with real-time logging and threading
+- **Command-line Interface**: Powerful CLI tool for automation and advanced users
 - **Bulk image processing**: Process entire directories of images
 - **Cropping**: Crop images to specific aspect ratios (16:9, 1:1, etc.) from center
 - **Resizing**: Resize images while maintaining aspect ratio
@@ -14,6 +16,7 @@ This is a Python-based image processing tool that provides bulk image processing
 - **Compression quality control**: Adjustable quality settings for JPEG and WebP formats (1-100)
 - **Watermarking**: Add text watermarks with customizable opacity and positioning
 - **Error handling**: Robust handling of corrupt or invalid image files
+- **Responsive UI**: Threading keeps the GUI responsive during long processing jobs
 
 ## Development Workflow
 
@@ -36,14 +39,18 @@ This script:
 ## Project Structure
 
 - `image_processor.py` - Main image processing module with cropping, resizing, watermarking, and batch processing
+- `app.py` - Desktop GUI application built with Tkinter
 - `requirements.txt` - Python dependencies (Pillow)
 - `input_images/` - Sample input directory for testing
 - `output_images/` - Default output directory for processed images
 - `.venv/` - Python virtual environment (git-ignored)
 - `src/` - Source code directory (legacy, contains empty `main` file)
 - `tests/` - Test directory (currently empty)
-- `docs/` - Documentation directory (contains empty `index.md`)
+- `docs/` - Documentation directory (contains GUI screenshot and empty `index.md`)
 - `.github/ISSUE_TEMPLATE/` - GitHub issue templates for bugs and features
+- `CHANGELOG.md` - Version history and feature additions
+- `app.spec` - PyInstaller specification file (for building executable)
+- `docs/gui-screenshot.jpg` - Screenshot of the GUI application
 
 ## Code Standards
 
@@ -68,11 +75,25 @@ The project uses `.editorconfig` with the following standards:
 python3 -m venv .venv
 source .venv/bin/activate  # On macOS/Linux
 
-# Install dependencies
+# Install dependencies (Note: sv_ttk required for GUI)
+pip install pillow sv_ttk
+# Or install from requirements.txt (may need to add sv_ttk manually)
 pip install -r requirements.txt
 ```
 
-### Running the Image Processor
+### Running the Applications
+
+#### GUI Application
+```bash
+# Run the desktop GUI application
+python app.py
+# or
+python3 app.py
+```
+
+#### Command-Line Interface (CLI)
+
+### Running the CLI Image Processor
 ```bash
 # Basic usage
 python image_processor.py input_folder output_folder
@@ -117,10 +138,19 @@ pip freeze > requirements.txt
 
 ## Architecture Overview
 
-### Core Functions
+### GUI Application (`app.py`)
+- **`ImageProcessorApp`**: Main Tkinter application class with modern dark theme (sv_ttk)
+- **Folder selection**: Browse for input and output directories
+- **Processing options**: Checkboxes and controls for all image processing features
+- **Real-time logging**: Text widget displays processing progress and status
+- **Threading**: Prevents UI freezing during long operations
+- **Progress indication**: Progress bar shows processing status
+
+### Core Processing Functions (`image_processor.py`)
 - **`crop_image()`**: Crops images to specific aspect ratios (e.g., 16:9, 1:1) from the center
 - **`add_watermark()`**: Applies transparent text watermarks to images with customizable font size and opacity
 - **`process_images()`**: Main batch processing function that handles cropping, resizing, format conversion, compression, and watermarking
+- **Logger parameter**: Supports both CLI (print) and GUI (custom logger) output
 - **Error handling**: Graceful handling of corrupt images and invalid file types
 
 ### Image Processing Pipeline
@@ -136,27 +166,36 @@ pip freeze > requirements.txt
 ## Development Notes
 
 ### Current State
+- ✅ **Version 1.0.0**: Full desktop GUI application with Tkinter (September 2025)
 - ✅ Core image processing functionality implemented (cropping, resizing, watermarking, format conversion)
 - ✅ Compression quality control for JPEG and WebP formats (v0.5.0)
 - ✅ Enhanced help documentation with usage examples and recommended settings
 - ✅ Virtual environment and dependency management setup
 - ✅ Command-line interface with argparse
+- ✅ Desktop GUI with modern dark theme (sv_ttk)
+- ✅ Real-time processing logs and progress indication
+- ✅ Threading for responsive UI during batch operations
 - ✅ Error handling and file validation
 - ✅ Sample input/output directories for testing
 - ✅ Version tracking with CHANGELOG.md
+- ✅ GUI screenshot and documentation
+- ✅ PyInstaller specification for executable building
 - 🔄 No testing framework configured yet
 - 🔄 No CI/CD pipeline setup
 - 🔄 Code formatting/linting tools not configured
 
 ### Future Enhancements
 - Add comprehensive test suite (pytest)
-- Implement logging instead of print statements
-- Add progress bars for batch processing
+- Implement structured logging (replace print statements in CLI)
 - Support for additional image effects (blur, brightness, contrast)
-- Configuration file support
-- GUI interface option
+- Configuration file support for both CLI and GUI
+- Standalone executable distribution (using PyInstaller)
+- Drag-and-drop functionality in GUI
 - Batch optimization targeting specific file sizes
 - Advanced filename options (prefixes/suffixes, custom naming patterns)
+- Plugin system for custom image effects
+- Batch processing with individual file progress tracking
+- Multi-threading for faster processing of large batches
 
 ### Git Configuration
 The `.gitignore` includes comprehensive exclusions for:
