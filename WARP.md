@@ -125,6 +125,58 @@ python image_processor.py input_images output_images --crop "1:1" --width 1080 -
 # Small thumbnails with high compression
 python image_processor.py input_images output_images --width 150 --format jpeg --quality 65
 ```
+Here is the updated content for your `WARP.md` file.
+
+I have added the new **Documentation** section we just defined and updated the **Project Structure** section to reflect that `docs/` is no longer empty.
+
+### 1\. Add this new section
+
+I recommend placing this under the **Development Commands** section, right after "Running the Applications" and before "Development Tasks".
+
+````markdown
+### Documentation
+
+The project uses MkDocs with the Material theme for documentation.
+
+#### Setup
+Ensure you have the documentation dependencies installed:
+```bash
+pip install mkdocs mkdocs-material "mkdocstrings[python]"
+# Or if you have updated requirements.txt:
+pip install -r requirements.txt
+````
+
+#### Running the Local Server
+
+To preview the documentation site locally:
+
+```bash
+# Run from the virtual environment binary directly to avoid global path conflicts
+./.venv/bin/mkdocs serve
+```
+
+The site will be available at `http://127.0.0.1:8000`.
+
+#### Deploying to GitHub Pages
+
+To build and deploy the documentation to the `gh-pages` branch:
+
+```bash
+./.venv/bin/mkdocs gh-deploy
+```
+
+```
+
+### 2. Update "Project Structure"
+Since we added files, you should update the `docs/` and `requirements.txt` lines in the **Project Structure** section:
+
+* **Old:** `- requirements.txt - Python dependencies (Pillow, sv_ttk)`
+* **New:** `- requirements.txt - Python dependencies (Pillow, sv_ttk, mkdocs)`
+* **Old:** `- docs/ - Documentation directory (contains GUI screenshot and empty index.md)`
+* **New:** `- docs/ - Documentation source files (MkDocs) and screenshots`
+```
+
+
 
 ### Development Tasks
 ```bash

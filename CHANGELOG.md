@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-11-19
+
+### Added
+- **Documentation Site**: Implemented a full documentation website using MkDocs with the Material theme.
+- **API Reference**: Added `docs/reference.md` to automatically generate API documentation from code docstrings.
+- **Project Documentation**: Added `docs/Architecture.md` and `docs/roadmap.md` to better explain the internal workings and future plans.
+- **Contributor Guide**: Created `CONTRIBUTING.md` to outline coding standards (2-space indent) and workflow.
+
+### Changed
+- **README Overhaul**: Updated `README.md` with Linux installation tips (`python3-tk`) and a new Troubleshooting/FAQ section.
+- **Developer Workflow**: Updated `WARP.md` to include instructions for building and deploying the documentation site.
+- **File Organization**: Moved `CONTRIBUTING.md` into the `docs/` directory to integrate with the generated site.
+
+
 ## [1.0.0] - 2025-09-17
 
 ### Added
