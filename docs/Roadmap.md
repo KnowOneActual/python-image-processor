@@ -1,4 +1,4 @@
-## Roadmap
+## 🛣️ Roadmap
 
 ### Current State
 - ✅ **Version 1.0.0**: Full desktop GUI application with Tkinter (September 2025)
@@ -31,3 +31,7 @@
 - Plugin system for custom image effects
 - Batch processing with individual file progress tracking
 - Multi-threading for faster processing of large batches
+- Adding more advanced filename options (e.g., adding a prefix or suffix).
+- Support for additional image effects (e.g., brightness, contrast).
+ 
+ Please feel free to open an issue or submit a pull request.

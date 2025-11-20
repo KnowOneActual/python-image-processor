@@ -9,7 +9,7 @@
 
 A user-friendly desktop application for bulk image processing. Built with Python and Tkinter, this tool provides both a graphical user interface (GUI) and a command-line interface (CLI) to automate repetitive image tasks.
 
-![Image Processor GUI Screenshot](/assets/img/python-image-processor_gui_screenshot_01.webp)
+![Image Processor GUI Screenshot](assets/img/python-image-processor_gui_screenshot_01.webp)
 
 ---
 
@@ -18,80 +18,93 @@ A user-friendly desktop application for bulk image processing. Built with Python
 Get the latest standalone application for your operating system. No Python installation required!
 
 1.  Go to the [**Releases Page**](https://github.com/KnowOneActual/python-image-processor/releases).
-2.  Download the latest version for your operating system (e.g., `image-processor. macOS.app.zip` or `image-processor. WIN.app.zip`).
-3.  Unzip the file if necessary and place the application in a convenient location.
+2.  Download the latest version for your operating system.
+3.  Unzip the file and place the application in a convenient location.
 
 ### Running the Application
 
-* **On Windows:** Double-click the `.exe` file.
-* **On macOS:**
-    1.  Double-click the application. You will likely see a warning that says the app cannot be opened because it is from an unidentified developer.
-    2.  Click **OK** to close the warning.
-    3.  Go to **System Settings** > **Privacy & Security**.
-    4.  Scroll down to the "Security" section. You will see a message about the application being blocked.
-    5.  Click the **"Open Anyway"** button. You will only need to do this the first time you run the app.
+* **Windows:** Double-click the `.exe` file.
+* **macOS:**
+    1.  Double-click the application. (Dismiss the initial security warning).
+    2.  Go to **System Settings** > **Privacy & Security**.
+    3.  Scroll down to "Security" and click **"Open Anyway"**.
+* **Linux:**
+    Most distributions require you to install Tkinter separately if you are running from source.
+    ```bash
+    sudo apt-get install python3-tk
+    ```
+
 ---
 
 ## ✨ Features
 
-This tool's features aim to help make your image workflow faster and more efficient:
-
-* **Desktop GUI Application**: An intuitive and modern interface that's easy for anyone to use.
+* **Desktop GUI Application**: An intuitive and modern interface.
 * **Bulk Processing**: Process entire folders of images at once.
 * **Format Conversion**: Convert between `jpeg`, `png`, `webp`, and `gif`.
-* **Resizing**: Scale images to a specific width while maintaining the aspect ratio.
-* **Center Cropping**: Crop images to a specific aspect ratio (e.g., `16:9`, `1:1`).
-* **Watermarking**: Add a customizable text watermark to your images.
-* **Quality Control**: Adjust the compression quality for `jpeg` and `webp` files to balance file size and quality.
+* **Resizing**: Scale images to a specific width while maintaining aspect ratio.
+* **Center Cropping**: Crop images to specific aspect ratios (e.g., `16:9`, `1:1`).
+* **Watermarking**: Add customizable text watermarks.
+* **Quality Control**: Adjust compression quality for `jpeg` and `webp` files.
 
 ---
 
+## 📚 Documentation
+
+We maintain detailed documentation for developers and contributors:
+
+* **[Architecture Overview](docs/Architecture.md)**: Learn how the app handles threading and the image processing pipeline.
+* **[Project Roadmap](docs/roadmap.md)**: See what features are planned for future releases.
+* **[Contributing Guide](CONTRIBUTING.md)**: Guidelines for submitting PRs and reporting bugs.
+
+---
 
 ## 💻 Running from Source
 
-If you want to run the code directly follow these steps:
+If you want to run the code directly:
 
 1.  **Clone the repository:**
     ```bash
     git clone [https://github.com/KnowOneActual/python-image-processor.git](https://github.com/KnowOneActual/python-image-processor.git)
     cd python-image-processor
     ```
-2.  **Install the required libraries:**
+2.  **Install requirements:**
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Run the GUI application:**
+3.  **Run the GUI:**
     ```bash
     python3 app.py
     ```
 
-
 ### Command-Line Usage
 
-For automation and terminal users, the CLI provides access to all processing features.
-
-**Basic Structure:**
-```bash
-python image_processor.py <input_dir> <output_dir> [options]
-````
-
-**Example:**
+For automation, use the CLI:
 
 ```bash
 python image_processor.py ./input_images ./output_images --crop "1:1" --width 1080 --format jpeg
-```
+````
 
-For a full list of commands and options, run:
+For a full list of commands:
 
 ```bash
 python image_processor.py --help
 ```
 
-## 🛣️ Roadmap
+-----
 
-This project is actively maintained. Future enhancements may include:
+## ❓ Troubleshooting & FAQ
 
-  * Adding more advanced filename options (e.g., adding a prefix or suffix).
-  * Support for additional image effects (e.g., brightness, contrast).
- 
- Please feel free to open an issue or submit a pull request.
+**Why was my file skipped?**
+The processor automatically skips files that are not valid images or have unsupported extensions to prevent crashing. Check the log output for specific error messages.
+
+**The GUI is frozen, what do I do?**
+Processing large batches of high-res images can take time. The application uses threading to keep the interface responsive, but if it appears stuck, check your terminal or the internal log window for activity before force-quitting.
+
+**I'm on Linux and the app won't start.**
+Ensure you have `python3-tk` installed. See the [Installation](https://www.google.com/search?q=%23download--installation-recommended) section above.
+
+-----
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
