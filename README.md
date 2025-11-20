@@ -1,3 +1,7 @@
+<p align="center">
+<img src="assets/img/python-image-processor_logo.webp" alt="alt text" width="150">
+</p>
+
 # Python Image Processor
 
 [![Python Version](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
