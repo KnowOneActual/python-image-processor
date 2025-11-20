@@ -1,8 +1,7 @@
 <p align="center">
-<img src="assets/img/python-image-processor_logo.webp" alt="awesome python image processor logo goes here" width="250">
+<img src="assets/img/python-image-processor_logo.webp" alt="awesome python image processor logo goes here" width="500">
 </p>
 
-# Python Image Processor
 
 [![Python Version](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
