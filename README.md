@@ -1,5 +1,5 @@
 <p align="center">
-<img src="assets/img/python-image-processor_logo.webp" alt="alt text" width="150">
+<img src="assets/img/python-image-processor_logo.webp" alt="awesome python image processor logo goes here" width="250">
 </p>
 
 # Python Image Processor
