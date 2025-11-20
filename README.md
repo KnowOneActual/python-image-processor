@@ -6,7 +6,7 @@
 
 A user-friendly desktop application for bulk image processing. Built with Python and Tkinter, this tool provides both a graphical user interface (GUI) and a command-line interface (CLI) to automate repetitive image tasks.
 
-![Image Processor GUI Screenshot](docs/gui-screenshot.jpg)
+![Image Processor GUI Screenshot](/assets/img/python-image-processor_gui_screenshot_01.webp)
 
 ---
 
