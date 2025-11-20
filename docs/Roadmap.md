@@ -21,7 +21,7 @@ This document outlines the current status of the project and planned features fo
 These are the prioritized features we plan to work on next.
 
 ### Short Term
-- [ ] **Test Suite**: Implement `pytest` to ensure image processing logic is robust and regression-free.
+- [X] **Test Suite**: Implement `pytest` to ensure image processing logic is robust and regression-free.
 - [ ] **Configuration Files**: Allow saving/loading user presets (e.g., "Instagram Settings" or "Web Optimization").
 - [ ] **Structured Logging**: Replace `print` statements in the CLI with a proper Python `logging` configuration.
 

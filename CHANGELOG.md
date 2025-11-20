@@ -8,9 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0] - 2025-11-19
 
 ### Added
-- 	created  https://KnowOneActual.github.io/python-image-processor/ via mkdocs (mkdocs serve and mkdocs gh-deploy)
--   Created and populated roadmap.md & Architecture.md
-- **Documentation Site**: Implemented a full documentation website using MkDocs with the Material theme.
+- **Test Suite**: Added `pytest` framework and unit tests for core image processing logic.
+- Deployed https://KnowOneActual.github.io/python-image-processor/
+- Created and populated roadmap.md & Architecture.md
+- **Documentation Site**: Implemented a full documentation website using MkDocs (mkdocs serve and mkdocs gh-deploy) with the Material theme.
 - **API Reference**: Added `docs/reference.md` to automatically generate API documentation from code docstrings.
 - **Project Documentation**: Added `docs/Architecture.md` and `docs/roadmap.md` to better explain the internal workings and future plans.
 - **Contributor Guide**: Created `CONTRIBUTING.md` to outline coding standards (2-space indent) and workflow.

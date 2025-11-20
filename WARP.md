@@ -164,8 +164,15 @@ To build and deploy the documentation to the `gh-pages` branch:
 ```bash
 ./.venv/bin/mkdocs gh-deploy
 ```
+### Testing
+The project uses `pytest` for unit testing.
 
-```
+```bash
+# Run all tests
+pytest
+
+# Run verbose to see individual test names
+pytest -v
 
 ### 2. Update "Project Structure"
 Since we added files, you should update the `docs/` and `requirements.txt` lines in the **Project Structure** section:
