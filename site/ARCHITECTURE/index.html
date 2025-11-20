@@ -241,6 +241,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -283,6 +285,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -291,22 +295,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#architecture-overview" class="md-nav__link">
+  <a href="#system-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture Overview
+        System Components
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Architecture Overview">
+    <nav class="md-nav" aria-label="System Components">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gui-application-apppy" class="md-nav__link">
+  <a href="#1-gui-application-apppy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GUI Application (app.py)
+        1. GUI Application (app.py)
       
     </span>
   </a>
@@ -314,32 +318,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#core-processing-functions-image_processorpy" class="md-nav__link">
+  <a href="#2-core-processing-logic-image_processorpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Processing Functions (image_processor.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#image-processing-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Image Processing Pipeline
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#supported-formats" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Supported Formats
+        2. Core Processing Logic (image_processor.py)
       
     </span>
   </a>
@@ -348,6 +330,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-processing-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Processing Pipeline
+      
+    </span>
+  </a>
   
 </li>
       
@@ -484,6 +477,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -492,22 +487,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#architecture-overview" class="md-nav__link">
+  <a href="#system-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture Overview
+        System Components
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Architecture Overview">
+    <nav class="md-nav" aria-label="System Components">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gui-application-apppy" class="md-nav__link">
+  <a href="#1-gui-application-apppy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GUI Application (app.py)
+        1. GUI Application (app.py)
       
     </span>
   </a>
@@ -515,32 +510,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#core-processing-functions-image_processorpy" class="md-nav__link">
+  <a href="#2-core-processing-logic-image_processorpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Processing Functions (image_processor.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#image-processing-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Image Processing Pipeline
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#supported-formats" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Supported Formats
+        2. Core Processing Logic (image_processor.py)
       
     </span>
   </a>
@@ -549,6 +522,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-processing-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Processing Pipeline
+      
+    </span>
+  </a>
   
 </li>
       
@@ -569,38 +553,37 @@
 
 
 
-  <h1>Architecture</h1>
-
-<h2 id="architecture-overview">Architecture Overview</h2>
-<h3 id="gui-application-apppy">GUI Application (<code>app.py</code>)</h3>
+<h1 id="architecture-overview">Architecture Overview</h1>
+<p>This document provides a high-level overview of the Python Image Processor's internal design and component structure.</p>
+<h2 id="system-components">System Components</h2>
+<h3 id="1-gui-application-apppy">1. GUI Application (<code>app.py</code>)</h3>
+<p>The user interface is built using <strong>Tkinter</strong> with the <strong>Sun Valley (sv_ttk)</strong> theme for a modern dark mode aesthetic.</p>
 <ul>
-<li><strong><code>ImageProcessorApp</code></strong>: Main Tkinter application class with modern dark theme (sv_ttk)</li>
-<li><strong>Folder selection</strong>: Browse for input and output directories</li>
-<li><strong>Processing options</strong>: Checkboxes and controls for all image processing features</li>
-<li><strong>Real-time logging</strong>: Text widget displays processing progress and status</li>
-<li><strong>Threading</strong>: Prevents UI freezing during long operations</li>
-<li><strong>Progress indication</strong>: Progress bar shows processing status</li>
+<li><strong><code>ImageProcessorApp</code> Class</strong>: The main entry point. It inherits from <code>tk.Tk</code> and manages the entire lifecycle of the application.</li>
+<li><strong>Threading Model</strong>: To prevent the UI from freezing during heavy image processing tasks, the app spawns a separate <code>threading.Thread</code> for the <code>process_images</code> function.</li>
+<li><strong>Event Loop</strong>: The main Tkinter event loop handles user inputs (clicks, folder selection) while the background thread updates the UI via a thread-safe logging mechanism.</li>
 </ul>
-<h3 id="core-processing-functions-image_processorpy">Core Processing Functions (<code>image_processor.py</code>)</h3>
+<h3 id="2-core-processing-logic-image_processorpy">2. Core Processing Logic (<code>image_processor.py</code>)</h3>
+<p>This module is decoupled from the GUI, allowing it to be used as a CLI tool or imported as a library.</p>
 <ul>
-<li><strong><code>crop_image()</code></strong>: Crops images to specific aspect ratios (e.g., 16:9, 1:1) from the center</li>
-<li><strong><code>add_watermark()</code></strong>: Applies transparent text watermarks to images with customizable font size and opacity</li>
-<li><strong><code>process_images()</code></strong>: Main batch processing function that handles cropping, resizing, format conversion, compression, and watermarking</li>
-<li><strong>Logger parameter</strong>: Supports both CLI (print) and GUI (custom logger) output</li>
-<li><strong>Error handling</strong>: Graceful handling of corrupt images and invalid file types</li>
+<li><strong>Dependency</strong>: Heavily relies on <strong>PIL (Pillow)</strong> for all image manipulations.</li>
+<li><strong>Key Functions</strong>:<ul>
+<li><code>crop_image()</code>: Calculates center-based cropping coordinates to fit specific aspect ratios (e.g., 16:9).</li>
+<li><code>add_watermark()</code>: Creates a transparent text layer and composites it over the original image.</li>
+<li><code>process_images()</code>: The orchestrator function that iterates through files and applies transformations in a specific order.</li>
 </ul>
-<h3 id="image-processing-pipeline">Image Processing Pipeline</h3>
+</li>
+</ul>
+<h2 id="image-processing-pipeline">Image Processing Pipeline</h2>
+<p>When a batch job is started, each image goes through the following transformation pipeline:</p>
 <ol>
-<li><strong>Input validation</strong>: Checks directory existence and file types</li>
-<li><strong>Image loading</strong>: Uses PIL to open and validate images</li>
-<li><strong>Processing</strong>: Applies transformations in order (crop → resize → watermark → format conversion with compression)</li>
-<li><strong>Output</strong>: Saves processed images to specified directory with optimized quality settings</li>
+<li><strong>Input Validation</strong>: Checks if the file is a valid image (PNG, JPEG, BMP, WebP, etc.).</li>
+<li><strong>Cropping (Optional)</strong>: If enabled, crops the image from the center to the target aspect ratio.</li>
+<li><strong>Resizing (Optional)</strong>: Scales the image to the target width using <code>Image.Resampling.LANCZOS</code> for high quality.</li>
+<li><strong>Watermarking (Optional)</strong>: Applies the text watermark with customizable opacity.</li>
+<li><strong>Format Conversion</strong>: Converts the image to the target format (e.g., RGBA to RGB for JPEG).</li>
+<li><strong>Compression</strong>: Saves the final file with the specified quality setting (1-100).</li>
 </ol>
-<h3 id="supported-formats">Supported Formats</h3>
-<ul>
-<li><strong>Input</strong>: PNG, JPEG, GIF, BMP, WebP</li>
-<li><strong>Output</strong>: All Pillow-supported formats with automatic RGBA→RGB conversion for JPEG</li>
-</ul>
 
 
 
