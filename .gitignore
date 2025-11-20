@@ -166,4 +166,5 @@ _scratch.*
 *.scratch
 start-work.sh
 update-warp.sh
+WARP.md
 
